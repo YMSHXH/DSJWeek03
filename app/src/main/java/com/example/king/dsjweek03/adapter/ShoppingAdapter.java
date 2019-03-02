@@ -72,8 +72,8 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
             public void onClick(View v) {
                 boolean checked = shoppingAdapterVH.goodsCarCkb.isChecked();
                 shoppignBean.setGoodsisCheck(checked);
-                if (!checked){
-                    shoppingAdapterCallBack.notifyData();
+                if (shoppingAdapterCallBack !=null){
+                    shoppingAdapterCallBack.notifyData(checked);
                 }
 
             }
@@ -84,7 +84,10 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
             @Override
             public void numCallback(int num) {
                 shoppignBean.setCount(num + "");
-                shoppingAdapterCallBack.notifyData();
+                if (shoppingAdapterCallBack !=null){
+                    shoppingAdapterCallBack.notifyDataNum();
+                }
+
             }
         });
     }
@@ -111,7 +114,8 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
     }
 
     public interface ShoppingAdapterCallBack{
-        void notifyData();
+        void notifyData(boolean isChecked);
+        void notifyDataNum();
     }
 
     public interface toGoods{

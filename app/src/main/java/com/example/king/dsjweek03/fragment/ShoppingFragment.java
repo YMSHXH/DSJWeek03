@@ -59,12 +59,24 @@ public class ShoppingFragment extends BaseMvpFragment<ShoppingContact.IShoppingM
         unbinder = ButterKnife.bind(this, view);
         recyView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        ckbQuan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//        ckbQuan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//
+//                for (ShoppignBean shoppignBean : listq) {
+//                    shoppignBean.setGoodsisCheck(isChecked);
+//                }
+//                shoppingAdapter.notifyDataSetChanged();
+//                sumPrice();
+//            }
+//        });
 
+        ckbQuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ckbQuan.isChecked();
                 for (ShoppignBean shoppignBean : listq) {
-                    shoppignBean.setGoodsisCheck(isChecked);
+                    shoppignBean.setGoodsisCheck(checked);
                 }
                 shoppingAdapter.notifyDataSetChanged();
                 sumPrice();
@@ -154,7 +166,24 @@ public class ShoppingFragment extends BaseMvpFragment<ShoppingContact.IShoppingM
     }
 
     @Override
-    public void notifyData() {
+    public void notifyData(boolean isChecked) {
+
+        //判断是否全选
+        boolean isAllCheck = true;
+        for (ShoppignBean shoppignBean : listq) {
+            if (!shoppignBean.isGoodsisCheck()){
+                ckbQuan.setChecked(false);
+                isAllCheck = false;
+            }
+        }
+        if (isAllCheck) {
+            ckbQuan.setChecked(isChecked);
+        }
+        sumPrice();
+    }
+
+    @Override
+    public void notifyDataNum() {
         sumPrice();
     }
 
@@ -162,7 +191,6 @@ public class ShoppingFragment extends BaseMvpFragment<ShoppingContact.IShoppingM
     public void setGoodsId(int position) {
         goodsIdCallBack.toID(listq.get(position).getCommodityId());
     }
-
 
     public interface GoodsIdCallBack{
         void toID(String id);
