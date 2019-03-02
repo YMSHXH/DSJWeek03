@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DSJWeek03</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">首页</string>
+    <string name="title_dashboard">购物车</string>
+    <string name="title_notifications">订单</string>
+</resources>

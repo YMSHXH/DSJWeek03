@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/dan_all_list"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:src="@mipmap/common_icon_all_list"
+        app:layout_constraintBottom_toTopOf="@+id/dantext_all_list"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/dan_pay"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dantext_all_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="全部订单"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/dan_all_list"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/dantext_pay"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/dan_pay"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:src="@mipmap/common_icon_pay"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/dan_all_list"
+        app:layout_constraintRight_toLeftOf="@+id/dan_receive"
+        app:layout_constraintBottom_toTopOf="@+id/dantext_pay"/>
+
+    <TextView
+        android:id="@+id/dantext_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 代付款 "
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/dan_pay"
+        app:layout_constraintRight_toLeftOf="@+id/dantext_receive"
+        app:layout_constraintLeft_toRightOf="@id/dantext_all_list"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/dan_receive"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:src="@mipmap/common_icon_receive"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/dan_pay"
+        app:layout_constraintRight_toLeftOf="@+id/dan_comment"
+        app:layout_constraintBottom_toTopOf="@+id/dantext_receive"/>
+
+    <TextView
+        android:id="@+id/dantext_receive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 代收货 "
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/dan_receive"
+        app:layout_constraintRight_toLeftOf="@+id/dantext_comment"
+        app:layout_constraintLeft_toRightOf="@id/dantext_pay"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/dan_comment"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:src="@mipmap/commom_icon_comment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/dan_receive"
+        app:layout_constraintRight_toLeftOf="@+id/dan_finish"
+        app:layout_constraintBottom_toTopOf="@+id/dantext_comment"/>
+
+    <TextView
+        android:id="@+id/dantext_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 代评价 "
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/dan_comment"
+        app:layout_constraintRight_toLeftOf="@+id/dantext_finish"
+        app:layout_constraintLeft_toRightOf="@id/dantext_receive"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:id="@+id/dan_finish"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
+        android:src="@mipmap/common_icon_finish"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/dan_comment"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/dantext_finish"/>
+
+    <TextView
+        android:id="@+id/dantext_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" 已完成 "
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/dan_finish"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/dantext_comment"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
