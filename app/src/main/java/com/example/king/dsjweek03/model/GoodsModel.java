@@ -21,13 +21,13 @@ public class GoodsModel implements GoodsContact.IGoodsModel {
     @Override
     public void setGoodsList(Map<String, String> parmas, Map<String, String> parmd, final GoodsModelCallBack goodsModelCallBack) {
         RetrofitUtils.getInstance().createService(ProductApiServer.class)
-                .requestGoods(ProducetApi.GOODS_API,parmas,parmd)
+                .requestGoods(ProducetApi.GOODS_API,parmas)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<BaseResponseBean<GodsBean>>() {
                     @Override
                     public void accept(BaseResponseBean<GodsBean> godsBeanBaseResponseBean) throws Exception {
-                        if ("0000".equals(godsBeanBaseResponseBean.status)){
+                        if ("0000".equals(godsBeanBaseResponseBean.status)) {
                             goodsModelCallBack.onSuccess(godsBeanBaseResponseBean.result);
                         } else {
                             goodsModelCallBack.onFile(godsBeanBaseResponseBean.message);

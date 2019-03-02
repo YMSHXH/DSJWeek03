@@ -1,17 +1,17 @@
 package com.example.king.dsjweek03.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.king.dsjweek03.R;
 import com.example.king.dsjweek03.bean.DanBean;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class DaoGoodsAdapter extends RecyclerView.Adapter<DaoGoodsAdapter.DaoGoo
         //加载图片
         String commodityPic = detailListBean.getCommodityPic();
         String[] split = commodityPic.split("\\,");
-        Glide.with(context).load(split[0]).into(daoGoodsAdapterVH.oneImg);
+        daoGoodsAdapterVH.oneImg.setImageURI(Uri.parse(split[0]));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class DaoGoodsAdapter extends RecyclerView.Adapter<DaoGoodsAdapter.DaoGoo
 
     public class DaoGoodsAdapterVH extends RecyclerView.ViewHolder {
         @BindView(R.id.one_img)
-        ImageView oneImg;
+        SimpleDraweeView oneImg;
         @BindView(R.id.one_title)
         TextView oneTitle;
         @BindView(R.id.one_price)

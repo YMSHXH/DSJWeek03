@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.Query;
@@ -21,7 +22,8 @@ public interface ProductApiServer {
     Observable<BaseResponseBean<List<ShoppignBean>>> requestSPcar(@Url String api, @HeaderMap Map<String, String> parmas);
 
     @GET
-    Observable<BaseResponseBean<GodsBean>> requestGoods(@Url String api, @HeaderMap Map<String, String> parmas, @QueryMap  Map<String, String> parmd);
+    Observable<BaseResponseBean<GodsBean>> requestGoods(@Url String api,
+                                                        @HeaderMap Map<String, String> parmas);
 
 
     @GET

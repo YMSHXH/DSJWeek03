@@ -1,5 +1,7 @@
 package com.example.king.dsjweek03.bean;
 
+import com.example.lib_network.bean.BaseResponseBean;
+
 import java.util.List;
 
 /**

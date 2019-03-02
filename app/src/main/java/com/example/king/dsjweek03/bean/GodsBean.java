@@ -1,6 +1,8 @@
 package com.example.king.dsjweek03.bean;
 
-public class GodsBean {
+import com.example.lib_network.bean.BaseResponseBean;
+
+public class GodsBean extends BaseResponseBean {
 
         private String categoryId;
         private String categoryName;
