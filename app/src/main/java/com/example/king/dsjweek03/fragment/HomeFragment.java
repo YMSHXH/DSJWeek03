@@ -28,6 +28,8 @@ public class HomeFragment extends BaseMvpFragment<GoodsContact.IGoodsModel, Good
     @BindView(R.id.recyView)
     RecyclerView recyView;
     Unbinder unbinder;
+    private Map<String, String> params;
+    private Map<String, String> parad;
 
     @Override
     protected int getResLayoutById() {
@@ -47,10 +49,10 @@ public class HomeFragment extends BaseMvpFragment<GoodsContact.IGoodsModel, Good
 
     @Override
     protected void init() {
-        Map<String, String> params = new HashMap<>();
+        params = new HashMap<>();
         params.put("userId", "1464");
         params.put("sessionId", "15514902837921464");
-        Map<String, String> parad = new HashMap<>();
+        parad = new HashMap<>();
         parad.put("commodityId", "5");
         presenter.setGoodsList(params, parad);
     }
@@ -91,5 +93,12 @@ public class HomeFragment extends BaseMvpFragment<GoodsContact.IGoodsModel, Good
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+
+    public void getActivityData(String id){
+        //ToastUtils.showLong(id);
+        parad.put("commodityId", id);
+        presenter.setGoodsList(params, parad);
     }
 }

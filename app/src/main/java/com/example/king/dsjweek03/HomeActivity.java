@@ -36,6 +36,9 @@ public class HomeActivity extends AppCompatActivity {
             return false;
         }
     };
+    private HomeFragment homeFragment;
+    private ShoppingFragment shoppingFragment;
+    private DanFragment danFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,16 +49,19 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        homeFragment = new HomeFragment();
+        shoppingFragment = new ShoppingFragment();
+        danFragment = new DanFragment();
         pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int i) {
                 switch (i){
                     case 0:
-                        return new HomeFragment();
+                        return homeFragment;
                     case 1:
-                        return new ShoppingFragment();
+                        return shoppingFragment;
                     case 2:
-                        return new DanFragment();
+                        return danFragment;
                 }
                 return null;
             }
@@ -63,6 +69,21 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public int getCount() {
                 return 3;
+            }
+        });
+
+        shoppingFragment.setGoodsIdCallBack(new ShoppingFragment.GoodsIdCallBack() {
+            @Override
+            public void toID(String id) {
+                homeFragment.getActivityData(id);
+                pager.setCurrentItem(0);
+            }
+        });
+
+        shoppingFragment.setToDanCallBack(new ShoppingFragment.toDanCallBack() {
+            @Override
+            public void toDan() {
+                pager.setCurrentItem(2);
             }
         });
     }

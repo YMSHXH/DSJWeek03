@@ -23,7 +23,8 @@ public interface ProductApiServer {
 
     @GET
     Observable<BaseResponseBean<GodsBean>> requestGoods(@Url String api,
-                                                        @HeaderMap Map<String, String> parmas);
+                                                        @HeaderMap Map<String, String> parmas,
+                                                        @QueryMap Map<String, String> parad);
 
 
     @GET

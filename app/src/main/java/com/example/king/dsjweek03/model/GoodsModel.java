@@ -21,7 +21,7 @@ public class GoodsModel implements GoodsContact.IGoodsModel {
     @Override
     public void setGoodsList(Map<String, String> parmas, Map<String, String> parmd, final GoodsModelCallBack goodsModelCallBack) {
         RetrofitUtils.getInstance().createService(ProductApiServer.class)
-                .requestGoods(ProducetApi.GOODS_API,parmas)
+                .requestGoods(ProducetApi.GOODS_API,parmas,parmd)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<BaseResponseBean<GodsBean>>() {

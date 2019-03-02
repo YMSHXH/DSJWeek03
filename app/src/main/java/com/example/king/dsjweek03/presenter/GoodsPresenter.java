@@ -10,7 +10,7 @@ public class GoodsPresenter extends GoodsContact.IGoodsPresenter {
 
     @Override
     public void setGoodsList(Map<String, String> parmas, Map<String, String> parmd) {
-        modle.setGoodsList(parmas, parmas, new GoodsModel.GoodsModelCallBack() {
+        modle.setGoodsList(parmas, parmd, new GoodsModel.GoodsModelCallBack() {
             @Override
             public void onSuccess(GodsBean godsBean) {
                 view.onSuccess(godsBean);

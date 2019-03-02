@@ -1,6 +1,7 @@
 package com.example.king.dsjweek03.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +26,11 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
     private Context context;
     private List<ShoppignBean> list;
     private ShoppingAdapterCallBack shoppingAdapterCallBack;
+    private toGoods toGoods;
+
+    public void setToGoods(ShoppingAdapter.toGoods toGoods) {
+        this.toGoods = toGoods;
+    }
 
     public void setShoppingAdapterCallBack(ShoppingAdapterCallBack shoppingAdapterCallBack) {
         this.shoppingAdapterCallBack = shoppingAdapterCallBack;
@@ -44,7 +50,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ShoppingAdapterVH shoppingAdapterVH, int i) {
+    public void onBindViewHolder(@NonNull final ShoppingAdapterVH shoppingAdapterVH, final int i) {
         final ShoppignBean shoppignBean = list.get(i);
         for (ShoppignBean bean : list) {
             bean.setCount("1");
@@ -53,6 +59,13 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
         shoppingAdapterVH.ckbGoodsCarName.setText(shoppignBean.getCommodityName());
         shoppingAdapterVH.ckbGoodsCarPrace.setText("￥："+shoppignBean.getPrice());
         shoppingAdapterVH.goodsCarImg.setImageURI(Uri.parse(shoppignBean.getPic()));
+
+        shoppingAdapterVH.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toGoods.setGoodsId(i);
+            }
+        });
 
         shoppingAdapterVH.goodsCarCkb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,4 +114,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.Shoppi
         void notifyData();
     }
 
+    public interface toGoods{
+        void setGoodsId(int position);
+    }
 }

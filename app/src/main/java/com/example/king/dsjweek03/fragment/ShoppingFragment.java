@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class ShoppingFragment extends BaseMvpFragment<ShoppingContact.IShoppingModel, ShoppingContact.IShoppingPresenter>
-        implements ShoppingContact.IShoppingView ,ShoppingAdapter.ShoppingAdapterCallBack {
+        implements ShoppingContact.IShoppingView ,ShoppingAdapter.ShoppingAdapterCallBack,ShoppingAdapter.toGoods {
     @BindView(R.id.xrecyView)
     RecyclerView recyView;
     @BindView(R.id.ckb_quan)
@@ -38,6 +38,16 @@ public class ShoppingFragment extends BaseMvpFragment<ShoppingContact.IShoppingM
     Unbinder unbinder;
     private List<ShoppignBean> listq;
     private ShoppingAdapter shoppingAdapter;
+    private GoodsIdCallBack goodsIdCallBack;
+    private toDanCallBack toDanCallBack;
+
+    public void setToDanCallBack(ShoppingFragment.toDanCallBack toDanCallBack) {
+        this.toDanCallBack = toDanCallBack;
+    }
+
+    public void setGoodsIdCallBack(GoodsIdCallBack goodsIdCallBack) {
+        this.goodsIdCallBack = goodsIdCallBack;
+    }
 
     @Override
     protected int getResLayoutById() {
@@ -58,6 +68,14 @@ public class ShoppingFragment extends BaseMvpFragment<ShoppingContact.IShoppingM
                 }
                 shoppingAdapter.notifyDataSetChanged();
                 sumPrice();
+            }
+        });
+
+        goPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //跳转到订单
+                toDanCallBack.toDan();
             }
         });
     }
@@ -99,6 +117,7 @@ public class ShoppingFragment extends BaseMvpFragment<ShoppingContact.IShoppingM
         shoppingAdapter = new ShoppingAdapter(getActivity(),list);
         recyView.setAdapter(shoppingAdapter);
         shoppingAdapter.setShoppingAdapterCallBack(this);
+        shoppingAdapter.setToGoods(this);
     }
 
     @Override
@@ -137,5 +156,19 @@ public class ShoppingFragment extends BaseMvpFragment<ShoppingContact.IShoppingM
     @Override
     public void notifyData() {
         sumPrice();
+    }
+
+    @Override
+    public void setGoodsId(int position) {
+        goodsIdCallBack.toID(listq.get(position).getCommodityId());
+    }
+
+
+    public interface GoodsIdCallBack{
+        void toID(String id);
+    }
+
+    public interface toDanCallBack{
+        void toDan();
     }
 }

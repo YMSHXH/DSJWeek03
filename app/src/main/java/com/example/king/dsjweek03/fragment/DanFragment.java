@@ -81,7 +81,7 @@ public class DanFragment extends BaseMvpFragment<DanListContact.IDanListModel, D
 
     @Override
     public void onSuccess(List<DanBean.OrderListBean> list) {
-        ToastUtils.showLong("数量"+list.size());
+        //ToastUtils.showLong("数量"+list.size());
         danAdapter.setList(list);
     }
 
